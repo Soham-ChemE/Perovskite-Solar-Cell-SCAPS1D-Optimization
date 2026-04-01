@@ -88,7 +88,7 @@ Ten ETL materials were screened under identical conditions:
 | TiO₂ | 1.050 | 19.33 | 68.90 | 13.99 |
 | WO₃ | 1.364 | 9.288 | 58.17 | 7.37 |
 
-![Temperature Effect on VOC and JSC](temperature_effect.png)
+
 
 ---
 
@@ -150,6 +150,8 @@ Optimal FTO thickness: **0.4 µm**
 | Al | 4.3 | 5.26 |
 | Pt | 5.7 | 28.44 |
 | Se | 5.9 | 28.45 |
+
+![Metal Back Contact Comparison](metalcontact_comparison.png)
 
 Se and Pt slightly outperform Ni but are toxic/expensive at scale. **Ni is the optimal practical choice.**
 
