@@ -102,6 +102,8 @@ Ten ETL materials were screened under identical conditions:
 | 1.6 | 1.207264 | 25.895 | 89.3968 | 27.9474 |
 | **2.0** | **1.207472** | **25.962** | **89.2809** | **27.9882** |
 
+![Cs2BiAgI6 Thickness Optimization](etl_thickness_optimization.png)
+
 Optimal ETL thickness: **2 µm**
 
 ---
