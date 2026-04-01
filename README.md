@@ -88,6 +88,8 @@ Ten ETL materials were screened under identical conditions:
 | TiO₂ | 1.050 | 19.33 | 68.90 | 13.99 |
 | WO₃ | 1.364 | 9.288 | 58.17 | 7.37 |
 
+![Temperature Effect on VOC and JSC](temperature_effect.png)
+
 ---
 
 ### 2. ETL Thickness Optimization
@@ -115,7 +117,6 @@ Optimal ETL thickness: **2 µm**
 | 380 | 1.080000 | 26.000 | 86.2000 | 24.0608 |
 | 400 | 1.040000 | 26.000 | 85.3000 | 23.1000 |
 
-![Temperature Effect on VOC and JSC](temperature_effect.png)
 ![Temperature Effect on FF and PCE](temperature_ff_pce.png)
 
 PCE drops from 27.99% at 300 K to 23.10% at 400 K due to increased carrier collisions and reduced mobility at elevated temperatures.
