@@ -40,18 +40,16 @@ Silicon-based solar cells dominate the market but are expensive, bulky, and ener
 ---
 
 ## Device Architecture
-Ni (Metal Back Contact, work function 5.55 eV)
-────────────────────────────────────
-Cs₂BiAgI₆ (ETL, 2 µm) ← Best performing ETL
-────────────────────────────────────
-CdTe (Absorber, 3 µm)
-────────────────────────────────────
-ZnSe (Buffer Layer, 0.025 µm) ← Non-toxic CdS alternative
-────────────────────────────────────
-FTO (Front Contact, 0.4 µm)
-────────────────────────────────────
-↑↑↑ AM 1.5G Solar Illumination (1000 W/m²)
 
+| Layer | Material | Thickness | Role |
+|---|---|---|---|
+| Back Contact | Ni | — | Work function 5.55 eV |
+| ETL | Cs₂BiAgI₆ | 2 µm | Best performing ETL ✅ |
+| Absorber | CdTe | 3 µm | Primary photon absorption |
+| Buffer | ZnSe | 0.025 µm | Non-toxic CdS alternative ✅ |
+| Front Contact | FTO | 0.4 µm | Transparent conductive oxide |
+
+**Illumination:** AM 1.5G solar spectrum at 1000 W/m², 300 K
 ---
 
 ## Simulation Methodology
