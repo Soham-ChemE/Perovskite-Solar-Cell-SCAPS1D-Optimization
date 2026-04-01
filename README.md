@@ -49,6 +49,8 @@ Silicon-based solar cells dominate the market but are expensive, bulky, and ener
 | Buffer | ZnSe | 0.025 µm | Non-toxic CdS alternative ✅ |
 | Front Contact | FTO | 0.4 µm | Transparent conductive oxide |
 
+![Device Architecture](device_architecture.png)
+
 **Illumination:** AM 1.5G solar spectrum at 1000 W/m², 300 K
 ---
 
@@ -112,6 +114,10 @@ Optimal ETL thickness: **2 µm**
 | 360 | 1.110000 | 25.962 | 87.0165 | 25.0473 |
 | 380 | 1.080000 | 26.000 | 86.2000 | 24.0608 |
 | 400 | 1.040000 | 26.000 | 85.3000 | 23.1000 |
+
+![Temperature Effect on VOC and JSC](temperature_effect.png)
+
+![Temperature Effect on FF and PCE](temperature vs eta,FF.png)
 
 PCE drops from 27.99% at 300 K to 23.10% at 400 K due to increased carrier collisions and reduced mobility at elevated temperatures.
 
