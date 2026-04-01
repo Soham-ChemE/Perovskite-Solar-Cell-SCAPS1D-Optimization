@@ -116,8 +116,7 @@ Optimal ETL thickness: **2 µm**
 | 400 | 1.040000 | 26.000 | 85.3000 | 23.1000 |
 
 ![Temperature Effect on VOC and JSC](temperature_effect.png)
-
-![Temperature Effect on FF and PCE](temperature vs eta,FF.png)
+![Temperature Effect on FF and PCE](temperature_ff_pce.png)
 
 PCE drops from 27.99% at 300 K to 23.10% at 400 K due to increased carrier collisions and reduced mobility at elevated temperatures.
 
