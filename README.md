@@ -1,189 +1,128 @@
-Click the README.md file → pencil icon → delete everything → paste this:
+<p align="center"><img src="hero_scaps.png" alt="ZnSe/CdTe thin-film solar cell optimisation" width="100%"></p>
 
-# Simulation of High-Efficiency FTO/ZnSe/CdTe/Cs₂BiAgI₆/Ni Solar Cells Using SCAPS-1D
+<div align="center">
 
-**Bachelor of Technology Capstone Project** | Chemical Engineering  
-**Institution:** Vellore Institute of Technology, Vellore  
-**Guide:** Dr. Dharmendra Kumar Bal (Associate Professor, SCHEME, VIT Vellore)  
-**Authors:** Soham Kavathekar · Suved Malokar · Sowmyan Nagaraj  
-**Year:** April 2025
+[![SCAPS-1D](https://img.shields.io/badge/SCAPS--1D-University%20of%20Gent-0b1220?style=flat-square&logoColor=22D3EE)](https://scaps.elis.ugent.be/)
+[![Award](https://img.shields.io/badge/Best%20Poster-ACC%202024%2C%20Indian%20Chemical%20Society-0b1220?style=flat-square&logoColor=f5a524)](Conference_Poster.pdf)
+[![Patents](https://img.shields.io/badge/Design%20patents-2%20granted%20%C2%B7%201%20utility%20under%20review-0b1220?style=flat-square)](#patents)
+[![Report](https://img.shields.io/badge/Capstone%20report-50%20pages-0b1220?style=flat-square)](Project_Report.pdf)
+
+**Soham Kavathekar** · Suved Malokar · Sowmyan Nagaraj
+B.Tech Chemical Engineering capstone, Vellore Institute of Technology, April 2025 · Guide: Dr. Dharmendra Kumar Bal
+
+</div>
 
 ---
 
-## Awards & Recognition
+## The one-sentence version
 
-🏆 **Best Poster Presentation Award** — 61st ACC 2024 Annual Convention of Chemists & International Conference on Emerging Trends in Chemistry, JECRC University, Jaipur (December 2024)
+**Replace the toxic CdS buffer in a CdTe thin-film cell with ZnSe, screen ten electron-transport layers, and the lead-free double perovskite Cs₂BiAgI₆ gives a simulated power-conversion efficiency of 27.99 % with a nickel back contact.**
+
+This is a device-physics simulation study, not a fabricated cell. SCAPS-1D solves Poisson's equation and the electron and hole continuity equations through the FTO / ZnSe / CdTe / ETL / metal stack under AM 1.5G, 1000 W m⁻², 300 K. The efficiencies are theoretical ceilings for the stated parameters.
+
+---
+
+## Device
+
+<p align="center"><img src="device_architecture.png" width="70%"></p>
+
+| Layer | Material | Thickness | Role |
+|---|---|---|---|
+| Front contact | FTO | 0.4 µm | transparent conductive oxide; thinner is better (PCE falls 27.89 → 26.96 % from 0.4 to 2.0 µm) |
+| Buffer | ZnSe | 0.025 µm | non-toxic replacement for CdS |
+| Absorber | CdTe | 3 µm | primary photon absorption, direct gap |
+| Electron transport layer | screened, Cs₂BiAgI₆ selected | 2 µm | band alignment to CdTe |
+| Back contact | Ni | work function 5.55 eV | practical alternative to Pt or Se |
+
+<p align="center"><img src="band_diagram.png" width="85%"></p>
+
+---
+
+## Results
+
+### Electron-transport-layer screening
+
+Ten ETLs were simulated in the same stack. Values are from the corrected results tables (July 2025), which supersede the April 2025 report where the two differ; the raw SCAPS batch exports in the project data confirm the corrected values.
+
+| ETL | V<sub>OC</sub> (V) | J<sub>SC</sub> (mA cm⁻²) | FF (%) | PCE (%) |
+|---|---|---|---|---|
+| **Cs₂BiAgI₆** | **1.207** | **25.96** | **89.28** | **27.99** |
+| C₆₀ | 1.229 | 25.43 | 87.98 | 27.50 |
+| PC₁₆BM | 1.066 | 25.22 | 87.09 | 23.41 |
+| Cu₂O | 1.779 | 25.52 | 49.84 | 22.63 |
+| CuO | 0.940 | 25.55 | 85.58 | 20.56 |
+| Sb₂Se₃ | 0.937 | 25.55 | 85.64 | 20.50 |
+| TiO₂ | 1.050 | 19.33 | 68.90 | 13.99 |
+| WO₃ | 1.364 | 9.29 | 58.17 | 7.37 |
+| PCBM | 0.996 | 0.28 | 87.1 | 0.25 |
+| WS₂ | 1.023 | 0.27 | 87.59 | 0.25 |
+
+Cs₂BiAgI₆ and C₆₀ share near-ideal fill factors and short-circuit currents; Cu₂O's high V<sub>OC</sub> is undone by a fill factor of 50 %; PCBM and WS₂ collapse to sub-milliamp currents in this stack, an alignment failure rather than a marginal loss.
+
+### Thickness optimisation of the selected ETL
+
+| Cs₂BiAgI₆ thickness (µm) | V<sub>OC</sub> (V) | J<sub>SC</sub> (mA cm⁻²) | FF (%) | PCE (%) |
+|---|---|---|---|---|
+| 0.4 | 1.2065 | 25.60 | 89.71 | 27.71 |
+| 0.8 | 1.2068 | 25.72 | 89.61 | 27.81 |
+| 1.2 | 1.2070 | 25.82 | 89.51 | 27.89 |
+| 1.6 | 1.2073 | 25.90 | 89.40 | 27.95 |
+| **2.0** | **1.2075** | **25.96** | **89.28** | **27.99** |
+
+<p align="center"><img src="etl_thickness_optimization.png" width="85%"></p>
+
+### Temperature
+
+PCE falls from 27.99 % at 300 K to 23.10 % at 400 K, almost entirely through V<sub>OC</sub> (1.207 → 1.040 V, about −1.7 mV K⁻¹) while J<sub>SC</sub> is flat; the usual thermal signature of a well-behaved junction.
+
+<p align="center"><img src="temperature_ff_pce.png" width="85%"></p>
+
+### Back contact
+
+| Metal | Work function used (eV) | PCE (%) |
+|---|---|---|
+| Al | 4.3 | 5.26 |
+| Cu | 4.6 | 12.43 |
+| Fe | 4.8 | 17.35 |
+| C | 5.0 | 22.33 |
+| W | 5.2 | 25.72 |
+| **Ni** | **5.55** | **27.99** |
+| Pt | 5.7 | 28.44 |
+| Se | 5.9 | 28.45 |
+
+Efficiency tracks the back-contact work function through the Schottky barrier at the metal interface. Pt and Se edge out Ni but are respectively scarce and toxic; Ni is the practical optimum. (The report also lists a gold contact; its recorded work function does not match literature values, so that row is omitted here pending a re-check.)
+
+<p align="center"><img src="metalcontact_comparison.png" width="85%"></p>
 
 ---
 
 ## Patents
 
-| # | Title | Design No. | Status | Date |
-|---|---|---|---|---|
-| 1 | Detachable Spiral Solar Panel | 434427-001 | ✅ Granted | Oct 2024 |
-| 2 | Dual-Layer Detachable Spiral Solar Panel | 459195-001 | ✅ Granted | May 2025 |
-| 3 | Utility Patent | — | 🔄 Under Technical Review | 2025 |
+The project's hardware concept, a detachable spiral thin-film panel geometry with about 18 % more active area than a planar panel of the same footprint, was filed in India by the team:
 
----
-
-## Why This Research Matters
-
-Silicon-based solar cells dominate the market but are expensive, bulky, and energy-intensive to manufacture. Thin-film solar cells (TFSCs) offer a promising alternative — cheaper, lighter, and scalable — but require careful material selection to achieve competitive efficiencies.
-
-**This study addresses two key challenges:**
-
-1. CdTe is an excellent absorber material but requires a buffer layer — the standard choice (CdS) is toxic and environmentally harmful
-2. The electron transport layer (ETL) critically determines how efficiently charge carriers are extracted — but no systematic comparison existed for the ZnSe/CdTe configuration
-
-**Our approach:** Use SCAPS-1D numerical simulation to systematically screen 10 ETL candidates and optimize every layer parameter in a novel FTO/ZnSe/CdTe/ETL/Ni device architecture — replacing toxic CdS with environmentally friendly ZnSe, and identifying Cs₂BiAgI₆ as a breakthrough ETL achieving **27.99% PCE**.
-
----
-
-## Device Architecture
-
-| Layer | Material | Thickness | Role |
+| | Title | Number | Status |
 |---|---|---|---|
-| Back Contact | Ni | — | Work function 5.55 eV |
-| ETL | Cs₂BiAgI₆ | 2 µm | Best performing ETL ✅ |
-| Absorber | CdTe | 3 µm | Primary photon absorption |
-| Buffer | ZnSe | 0.025 µm | Non-toxic CdS alternative ✅ |
-| Front Contact | FTO | 0.4 µm | Transparent conductive oxide |
+| 1 | Detachable Spiral Solar Panel | 434427-001 | granted, October 2024 |
+| 2 | Dual-Layer Detachable Spiral Solar Panel | 459195-001 | granted, May 2025 |
+| 3 | Method of Fabricating Detachable Spiral Thin-Film Energy Devices | utility | under review |
 
-![Device Architecture](device_architecture.png)
-
-**Illumination:** AM 1.5G solar spectrum at 1000 W/m², 300 K
----
-
-## Simulation Methodology
-
-**Software:** SCAPS-1D (Solar Cell Capacitance Simulator in 1 Dimension), University of Gent  
-**Conditions:** AM 1.5G spectrum, 1000 W/m², 300 K, series resistance ≈ 0, shunt resistance = 1000 Ω·cm²
-
-SCAPS-1D solves three coupled semiconductor equations simultaneously:
-
-- **Poisson's equation** — electrostatic potential distribution
-- **Electron continuity equation** — carrier generation and recombination
-- **Hole continuity equation** — drift-diffusion transport
-
-Key parameters optimized: ETL material, layer thickness (all layers), metal back contact work function, temperature (300–400 K)
+Certificates: [`PATENT 1.pdf`](PATENT%201.pdf), [`PATENT 2.pdf`](PATENT%202.pdf).
 
 ---
 
-## Key Results
+## Files
 
-### 1. ETL Comparative Study — Cs₂BiAgI₆ Wins
-
-Ten ETL materials were screened under identical conditions:
-
-| ETL | V_OC (V) | J_SC (mA/cm²) | FF (%) | PCE (%) |
-|---|---|---|---|---|
-| **Cs₂BiAgI₆** | **1.2075** | **25.962** | **89.28** | **27.99** |
-| C₆₀ | 1.2278 | 25.43 | 87.98 | 27.50 |
-| WS₂ | 1.1466 | 25.43 | 89.4 | 26.07 |
-| PCBM | 0.997 | 0.283 | 87.06 | 24.55 |
-| Sb₂Se₃ | 0.937 | 25.55 | 85.64 | 20.50 |
-| PC₁₆BM | 1.779 | 25.52 | 49.84 | 22.63 |
-| CuO | 1.229 | 25.43 | 87.98 | 27.50 |
-| Cu₂O | 1.779 | 25.52 | 49.84 | 22.63 |
-| TiO₂ | 1.050 | 19.33 | 68.90 | 13.99 |
-| WO₃ | 1.364 | 9.288 | 58.17 | 7.37 |
-
-
-
----
-
-### 2. ETL Thickness Optimization
-
-| Thickness (µm) | V_OC (V) | J_SC (mA/cm²) | FF (%) | PCE (%) |
-|---|---|---|---|---|
-| 0.4 | 1.206455 | 25.598 | 89.7147 | 27.7064 |
-| 0.8 | 1.206764 | 25.720 | 89.6129 | 27.8145 |
-| 1.2 | 1.207031 | 25.816 | 89.5075 | 27.8914 |
-| 1.6 | 1.207264 | 25.895 | 89.3968 | 27.9474 |
-| **2.0** | **1.207472** | **25.962** | **89.2809** | **27.9882** |
-
-![Cs2BiAgI6 Thickness Optimization](etl_thickness_optimization.png)
-
-Optimal ETL thickness: **2 µm**
-
----
-
-### 3. Temperature Dependence (300–400 K)
-
-| Temp. (K) | V_OC (V) | J_SC (mA/cm²) | FF (%) | PCE (%) |
-|---|---|---|---|---|
-| **300** | **1.207472** | **25.962** | **89.2809** | **27.9882** |
-| 320 | 1.174975 | 25.962 | 88.5507 | 27.0121 |
-| 340 | 1.142219 | 25.962 | 87.7825 | 26.0313 |
-| 360 | 1.110000 | 25.962 | 87.0165 | 25.0473 |
-| 380 | 1.080000 | 26.000 | 86.2000 | 24.0608 |
-| 400 | 1.040000 | 26.000 | 85.3000 | 23.1000 |
-
-![Temperature Effect on FF and PCE](temperature_ff_pce.png)
-
-PCE drops from 27.99% at 300 K to 23.10% at 400 K due to increased carrier collisions and reduced mobility at elevated temperatures.
-
----
-
-### 4. FTO Thickness — Inverse Relationship with PCE
-
-| Thickness (µm) | PCE (%) |
+| File | What it is |
 |---|---|
-| 0.4 | 27.8858 |
-| 0.8 | 27.617 |
-| 1.2 | 27.3793 |
-| 1.6 | 27.1607 |
-| 2.0 | 26.9556 |
+| `Project_Report.pdf` | full capstone thesis |
+| `Conference_Poster.pdf` | poster presented at the 61st Annual Convention of Chemists (ACC 2024), Best Poster Award |
+| `Cs2BiAgI6_Temperature_Data.xlsx` | SCAPS-1D output for the temperature study |
+| `device_architecture.png`, `band_diagram.png`, `etl_thickness_optimization.png`, `temperature_ff_pce.png`, `metalcontact_comparison.png` | figures |
 
-Optimal FTO thickness: **0.4 µm**
+## Scope
 
----
-
-### 5. Metal Back Contact Comparison
-
-| Metal | Work Function (eV) | PCE (%) |
-|---|---|---|
-| Cu | 4.6 | 12.43 |
-| Fe | 4.8 | 17.35 |
-| Au | 2.1 | 24.67 |
-| C | 5.0 | 22.33 |
-| W | 5.2 | 25.72 |
-| **Ni** | **5.55** | **27.99** |
-| Al | 4.3 | 5.26 |
-| Pt | 5.7 | 28.44 |
-| Se | 5.9 | 28.45 |
-
-![Metal Back Contact Comparison](metalcontact_comparison.png)
-
-Se and Pt slightly outperform Ni but are toxic/expensive at scale. **Ni is the optimal practical choice.**
-
----
-
-## Repository Contents
-
-| File | Description |
-|---|---|
-| `Project_Report.pdf` | Full B.Tech capstone thesis |
-| `Conference_Poster.pdf` | Poster presented at ACC 2024 — Best Poster Award |
-| `Patent_1_434427-001.pdf` | Granted design patent — Detachable Spiral Solar Panel |
-| `Patent_2_459195-001.pdf` | Granted design patent — Dual-Layer Detachable Spiral Solar Panel |
-| `Cs2BiAgI6_Temperature_Data.xlsx` | SCAPS-1D output — temperature dependence study |
-
----
-
-## Conclusions
-
-- **Cs₂BiAgI₆ is the optimal ETL** for this configuration, achieving PCE of **27.99%** with Ni and **28.45%** with Se
-- **ZnSe successfully replaces toxic CdS** as a buffer layer without sacrificing performance
-- **Optimal parameters:** ETL = 2 µm, CdTe = 2 µm, FTO = 0.4 µm, T = 300 K
-- **Temperature is a critical deployment factor** — PCE drops ~17% from 300 K to 400 K
-- This work produced **2 granted design patents** and a **utility patent under review**
-
----
+SCAPS-1D is a one-dimensional drift-diffusion solver. Results depend on the material parameters entered (band gaps, affinities, mobilities, defect densities) and represent an idealised planar device without interface defect states beyond those specified, optical losses at the front glass, or series resistance. The 27.99 % figure is an upper bound for this parameter set, not an achievable cell efficiency. A manuscript describing this work is in preparation.
 
 ## Contact
 
-**Soham Kavathekar**  
-MS Chemical & Biomolecular Engineering, University of Pennsylvania  
-📧 stg3719@seas.upenn.edu  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Soham%20Kavathekar-blue)](https://www.linkedin.com/in/soham-kavathekar-72a22b246)
+Soham Kavathekar · MS Chemical & Biomolecular Engineering, University of Pennsylvania · [stg3719@seas.upenn.edu](mailto:stg3719@seas.upenn.edu) · [LinkedIn](https://www.linkedin.com/in/soham-kavathekar-72a22b246)
