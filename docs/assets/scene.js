@@ -11,9 +11,8 @@ const sub = s => s.replace(/(\d)/g, m => '₀₁₂₃₄₅₆₇₈₉'[+m]);
   const st = createStage(canvas, { fov: 36, bloom: { strength: .35, radius: .45, threshold: .85 }, dof: { aperture: .0004, maxblur: .003 }, exposure: 1.0, envIntensity: .5 });
   if (st.failed) return; const { scene, camera } = st;
   // dark stage in both themes so the band diagram and bars read (the page shade blends it into the page colour)
-  const stageBg = () => { scene.background = new THREE.Color(S.isDark() ? '#0b1220' : '#111a2b'); st.dirty = true; }; stageBg();
   const ctr = new OrbitControls(camera, canvas); ctr.enableDamping = true; ctr.enableZoom = false; ctr.enablePan = false; ctr.autoRotate = !reduced; ctr.autoRotateSpeed = .45; ctr.minPolarAngle = .7; ctr.maxPolarAngle = 1.45;
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x223355, .9)); const dl = new THREE.DirectionalLight(0xffffff, 1.4); dl.position.set(4, 8, 6); scene.add(dl);
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x223355, .9); scene.add(hemi); const dl = new THREE.DirectionalLight(0xffffff, 1.4); dl.position.set(4, 8, 6); scene.add(dl);
   const COL = { FTO: 0x60a5fa, ZnSe: 0x34d399, CdTe: 0xf59e0b, Cs2BiAgI6: 0xf87171, Ni: 0x94a3b8 }; const LAB = { FTO: 'FTO 0.4 µm', ZnSe: 'ZnSe 0.025 µm', CdTe: 'CdTe 3 µm', Cs2BiAgI6: 'Cs₂BiAgI₆ 2 µm', Ni: 'Ni back contact' };
   const vis = t => t === 0 ? .25 : Math.max(.16, .42 * Math.log10(1 + t * 40)); const W = 4.2, Dp = 3.0; const g = new THREE.Group(); scene.add(g);
   const layers = []; let y = 0; const order = [...D.stack].reverse(); const dark = () => true; // labels always for the dark stage
@@ -34,7 +33,7 @@ const sub = s => s.replace(/(\d)/g, m => '₀₁₂₃₄₅₆₇₈₉'[+m]);
   const rank = D.ranking; const bw = .62, gapw = .22; const totalW = rank.length * (bw + gapw);
   rank.forEach((r, i) => { const h = Math.max(.02, r[5] / 28 * 3.2); const best = i === 0; const col = best ? 0xf87171 : (r[5] > 20 ? 0xf59e0b : r[5] > 5 ? 0x22d3ee : 0x64748b); const m = new THREE.Mesh(new THREE.BoxGeometry(bw, h, bw), new THREE.MeshStandardMaterial({ color: col, emissive: col, emissiveIntensity: best ? .5 : .2, roughness: .4 })); m.position.set(-totalW + i * (bw + gapw), h / 2, 0); m.scale.y = .001; const lab = textSprite(`${sub(r[0])} ${r[5].toFixed(2)} %`, best ? '#f87171' : (dark() ? '#e6edf3' : '#0b1220'), 1.9); lab.position.set(m.position.x, h + .28, 0); lab.visible = false; bars.add(m, lab); barList.push({ m, lab, h }); });
   const barTitle = textSprite('Ten electron-transport layers, PCE at best thickness', dark() ? '#8b98a9' : '#5b6676', 3.4); barTitle.position.set(-totalW / 2, 3.8, 0); barTitle.visible = false; bars.add(barTitle);
-  st.onTheme = () => { stageBg(); };
+  st.onTheme = () => { hemi.intensity = .9 * st.lights; dl.intensity = 1.4 * st.lights; st.dirty = true; }; st.onTheme();
   // readout
   const ro = { name: document.getElementById('roName'), t: document.getElementById('roT'), eg: document.getElementById('roEg'), chi: document.getElementById('roChi'), role: document.getElementById('roRole') }; let focus = -1;
   function setFocus(i) { if (i === focus || !ro.name) return; focus = i; const L = order[i]; ro.name.textContent = sub(L.name); ro.t.textContent = L.t_um ? L.t_um + ' µm' : 'metal'; ro.eg.textContent = L.Eg ? L.Eg.toFixed(2) + ' eV' : '–'; ro.chi.textContent = L.chi.toFixed(2) + ' eV' + (L.Eg ? '' : ' (φ)'); ro.role.textContent = L.role; }
@@ -57,7 +56,7 @@ const sub = s => s.replace(/(\d)/g, m => '₀₁₂₃₄₅₆₇₈₉'[+m]);
     (wide() ? pathWide : pathNarrow).at(reduced ? 1 : T, pos3, tgt3);
     if (!dragging && camera.position.distanceToSquared(pos3) > 1e-6) { camera.position.lerp(pos3, reduced ? 1 : .08); changed = true; }
     ctr.target.lerp(tgt3, .08); ctr.autoRotate = !reduced && T < .05 && !dragging; if (ctr.autoRotate || dragging) changed = true; ctr.update();
-    if (st.bloom) st.bloom.strength = .3 + .25 * S.hero.glow; if (st.bokeh) st.bokeh.uniforms.focus.value = camera.position.distanceTo(ctr.target);
+    st.setBloom(.3 + .25 * S.hero.glow); if (st.bokeh) st.bokeh.uniforms.focus.value = camera.position.distanceTo(ctr.target);
     if (Math.abs(T - lastT) > 1e-4) { lastT = T; changed = true; }
     return changed;
   });
