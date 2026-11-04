@@ -2,34 +2,26 @@
  "pages": {
   "index.html": {
    "dark": {
-    "errors": [
-     "TypeError: Cannot read properties of undefined (reading 'filter')"
-    ],
+    "errors": [],
     "failed": [],
     "imagesLoaded": "0/0",
-    "transferBytes": 481136,
+    "transferBytes": 497363,
     "scenes": [
-     "etl",
-     "jv"
+     "stack",
+     "etl"
     ],
-    "mobileErrors": [
-     "TypeError: Cannot read properties of undefined (reading 'filter')"
-    ]
+    "mobileErrors": []
    },
    "light": {
-    "errors": [
-     "TypeError: Cannot read properties of undefined (reading 'filter')"
-    ],
+    "errors": [],
     "failed": [],
     "imagesLoaded": "0/0",
-    "transferBytes": 482625,
+    "transferBytes": 485063,
     "scenes": [
-     "etl",
-     "jv"
+     "stack",
+     "etl"
     ],
-    "mobileErrors": [
-     "TypeError: Cannot read properties of undefined (reading 'filter')"
-    ]
+    "mobileErrors": []
    },
    "lighthouse": {
     "performance": 98,

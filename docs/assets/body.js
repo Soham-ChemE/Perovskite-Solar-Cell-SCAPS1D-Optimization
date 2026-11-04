@@ -23,8 +23,8 @@ Viz.view('[data-viz="stack"]', v => {
   const ex = Viz.exploded(v, parts);
   v.update = vv => { ex.draw(vv.p); labs.forEach((l, i) => l.material.opacity = Math.max(0, (vv.p - i * .12 - .2) * 4)); const b = Math.max(0, Math.min(1, (vv.p - .55) / .4)); lEc.geometry.setDrawRange(0, Math.floor(ec.length * b)); lEv.geometry.setDrawRange(0, Math.floor(ev.length * b)); lNi.geometry.setDrawRange(0, b > .95 ? 2 : 0); bl.forEach(l => l.material.opacity = b); return false; };
   v.hover = hit => { const s = hit.object.userData; return s && s.name ? `<b>${s.name}, ${s.t_um} µm</b>${s.role} · ${s.type} · E<sub>g</sub> ${s.Eg} eV, χ ${s.chi} eV` : null; };
-  v.rot = .25; v.tilt = .15;
-}, { camera: [0, 1.4, 7.6], target: [.2, -.1, 0], fov: 34 });
+  v.rig.position.x = .9; v.rot = .25; v.tilt = .15;
+}, { camera: [0, 1.4, 8.2], target: [.2, -.1, 0], fov: 34 });
 
 /* ---------- 2. the ten-ETL screen ---------- */
 Viz.view('[data-viz="etl"]', v => {
