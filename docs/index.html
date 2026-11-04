@@ -11,14 +11,14 @@
 <meta name="theme-color" content="#0b1220">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='4' fill='%23f59e0b'/%3E%3Crect x='8' y='8' width='16' height='5' fill='%230b1220'/%3E%3Crect x='8' y='15' width='16' height='9' fill='%230b1220' opacity='.5'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/site.css">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js">
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
 <script defer src="assets/data.js"></script>
 <script defer src="assets/site.js"></script>
-<script type="module" src="assets/scene.js"></script>
+<script type="module">if(!(window.SITE&&window.SITE.softGL)){import('./assets/scene.js');import('./assets/body.js');}</script>
 <style>.readout{position:absolute;right:16px;top:66px;background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:16px;padding:12px 14px;backdrop-filter:blur(8px);min-width:250px;font-size:13px;color:var(--muted)}
 .readout b{color:var(--ink)}.readout .big{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}.readout .row{display:flex;justify-content:space-between;gap:12px;margin-top:5px}
 .sticky-fig h4{margin:0 0 4px;font-size:15px}.sticky-fig .sub{color:var(--muted);font-size:13px;margin-bottom:10px}.sticky-fig canvas{width:100%;height:300px;display:block}
@@ -28,10 +28,10 @@
 :root[data-theme="dark"]{--good:#34d399;--bad:#f87171}
 .readout{background:var(--glass)}
 @media (max-width:640px){.readout{top:60px;right:8px;left:8px;min-width:0;padding:8px 10px}.readout .big{font-size:22px}}
-.sticky-fig{padding:18px;height:auto;min-height:0}.sticky-fig canvas{width:100%;height:300px;display:block}@media (max-width:820px){.sticky-fig{height:auto}.sticky-fig canvas{height:200px}}
+.sticky-fig{padding:18px;height:auto;min-height:0}@media (max-width:820px){.sticky-fig{height:auto}}
 tr.hl td{color:var(--acc);font-weight:700}
 </style>
-<noscript><style>.hero .fallback{opacity:1}.reveal{opacity:1;transform:none}</style></noscript>
+<noscript><style>.hero .fallback{opacity:1}.reveal{opacity:1;transform:none}.viz img.fallback{opacity:1}</style></noscript>
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="#top">ZnSe/CdTe in SCAPS-1D</a>
@@ -45,7 +45,7 @@ tr.hl td{color:var(--acc);font-weight:700}
 <div class="readout" aria-live="polite"><div>Layer in focus</div><div class="big" id="roName">FTO</div><div class="row"><span>thickness <b id="roT">0.4 µm</b></span><span>E<sub>g</sub> <b id="roEg">3.50 eV</b></span></div><div class="row"><span>χ <b id="roChi">4.00 eV</b></span><span id="roRole">front contact</span></div></div>
 <div class="copy"><div class="wrap">
 <h1>Swap the toxic buffer. Screen the rest.</h1>
-<p>A SCAPS-1D device-physics study of an FTO / ZnSe / CdTe thin-film cell: ZnSe replaces the CdS window, then ten electron-transport layers, nine back-contact metals, four layer thicknesses and temperature are swept. The lead-free double perovskite Cs₂BiAgI₆ with a nickel contact gives a simulated 27.99 %. A ceiling for this parameter set, not a fabricated cell.</p>
+<p>A SCAPS-1D device-physics study of an FTO / ZnSe / CdTe thin-film cell: ZnSe replaces the CdS window, then ten electron-transport layers, nine back-contact metals, four layer thicknesses and temperature are swept. The lead-free double perovskite Cs₂BiAgI₆ with a nickel contact gives a simulated 27.99 %, the ceiling for this parameter set.</p>
 <div class="cta"><a class="btn" href="#etl">See the screen</a><a class="btn ghost" href="https://github.com/Soham-ChemE/Perovskite-Solar-Cell-SCAPS1D-Optimization">Exports and scripts</a></div>
 </div></div><div class="scrollhint">Scroll</div>
 </div></div>
@@ -62,10 +62,10 @@ tr.hl td{color:var(--acc);font-weight:700}
 <h2 class="reveal">Two layers reach the absorber's current limit. Two collapse to nothing.</h2>
 <p class="lead reveal">Each ETL was swept from 0.4 to 2.0 µm with the rest of the stack fixed (FTO 0.4 / ZnSe 0.025 / CdTe 3 µm / Ni). Cs₂BiAgI₆ and C₆₀ share near-ideal fill factors and almost the full 26 mA/cm² a 1.5 eV absorber can deliver under AM 1.5G; both have the same electron affinity as CdTe, so there is no conduction-band step. PCBM and WS₂ keep a normal V<sub>OC</sub> and fill factor but lose the current, so the loss is in collection, not the junction.</p>
 <div class="two">
-<div class="card reveal"><img data-fig="fig_etl" alt="Horizontal bar chart of simulated efficiency for ten electron-transport layers: Cs2BiAgI6 27.99 percent, C60 27.50, PC16BM 23.41, Cu2O 22.63, CuO 20.56, Sb2Se3 20.50, TiO2 13.99, WO3 8.11, PCBM 0.25, WS2 0.25." src="assets/fig_etl_dark.svg"></div>
+<div class="vizcard reveal"><div class="vizhead"><b>Ten electron-transport layers</b><span class="legend"><span><i style="background:var(--c-rose)"></i>best</span><span><i style="background:var(--c-warm)"></i>above 20 %</span><span><i style="background:var(--c-cyan)"></i>5 to 20 %</span><span><i style="background:var(--c-blue)"></i>J<sub>SC</sub></span></span></div><div class="viz" data-viz="etl" role="img" aria-label="3D bar field of simulated efficiency and short-circuit current for ten electron-transport layers: Cs2BiAgI6 27.99 percent, C60 27.50, PC16BM 23.41, Cu2O 22.63, CuO 20.56, Sb2Se3 20.50, TiO2 13.99, WO3 8.11, PCBM 0.25, WS2 0.25"><img class="fallback" alt="" data-viz-fig="viz_etl" loading="lazy"></div><div class="vizfoot">Each ETL at its best thickness. The front row is efficiency, the back row the short-circuit current: PCBM and WS₂ lose the current, not the voltage. Hover a bar.</div></div>
 <div class="tablewrap reveal"><table><thead><tr><th>ETL</th><th class="num">t (µm)</th><th class="num">V<sub>OC</sub> (V)</th><th class="num">J<sub>SC</sub></th><th class="num">FF (%)</th><th class="num">PCE (%)</th></tr></thead><tbody id="etlTable"></tbody></table></div>
 </div>
-<div class="card reveal" style="margin-top:24px"><img data-fig="fig_jv" alt="Current density against voltage under AM 1.5G for all ten electron-transport layers at their best thickness; the exports stop at 1.16 volts." src="assets/fig_jv_dark.svg"></div>
+<div class="vizcard reveal" style="margin-top:24px"><div class="vizhead"><b>J-V curves at the best thickness, all ten</b><span class="legend">ribbons stacked by rank</span></div><div class="viz wide" data-viz="jv" role="img" aria-label="Ten 3D ribbons of current density against voltage under AM 1.5G, one per electron-transport layer at its best thickness, stacked by rank"><img class="fallback" alt="" data-viz-fig="viz_jv" loading="lazy"></div><div class="vizfoot">The exports stop at 1.16 V. Hover a ribbon for the point and the cell's efficiency.</div></div>
 </div></section>
 
 <section class="story alt" id="sweeps"><div class="wrap">
@@ -73,31 +73,32 @@ tr.hl td{color:var(--acc);font-weight:700}
 <h2 class="reveal">The absorber gains current with thickness, the front contact loses it, the buffer is inert.</h2>
 <p class="lead reveal">With Cs₂BiAgI₆ selected, each layer was swept in turn. Step through the sweeps: the J-V curve and the four metrics come straight from the SCAPS export for that point.</p>
 <div class="sticky-wrap">
-<div class="sticky-fig"><h4 id="sfTitle">CdTe absorber</h4><div class="sub" id="sfSub">thickness sweep, 0.4 to 2.0 µm</div><canvas id="sweepCanvas" role="img" aria-label="Line chart of efficiency against the swept parameter for the selected layer"></canvas>
+<div class="sticky-fig"><h4 id="sfTitle">CdTe absorber</h4><div class="sub" id="sfSub">thickness sweep, 0.4 to 2.0 µm</div><div class="viz" data-viz="sweeps" style="position:relative;inset:auto;aspect-ratio:16/10;border:1px solid var(--line);border-radius:14px" role="img" aria-label="Five 3D ribbons of efficiency against the swept parameter: CdTe, FTO, ZnSe and ETL thickness and temperature, the sweep under discussion highlighted"><img class="fallback" alt="" data-viz-fig="viz_sweeps" loading="lazy"></div>
 <div class="kpis"><div><b id="kV">–</b><span>V<sub>OC</sub> (V)</span></div><div><b id="kJ">–</b><span>J<sub>SC</sub> (mA/cm²)</span></div><div><b id="kF">–</b><span>FF (%)</span></div><div><b id="kP">–</b><span>PCE (%)</span></div></div></div>
 <div class="steps" id="steps">
 <div class="step active" data-step="CdTe"><h3>CdTe absorber: 27.23 → 27.85 %</h3><p>J<sub>SC</sub> rises with thickness as more photons are absorbed; V<sub>OC</sub> falls slightly with more bulk recombination. The optimum stack uses 3 µm.</p></div>
 <div class="step" data-step="FTO"><h3>FTO front contact: 27.89 → 26.96 %</h3><p>Thinner is better. A thicker transparent conductor is a parasitic absorber in front of the junction.</p></div>
 <div class="step" data-step="ZnSe"><h3>ZnSe buffer: flat at 27.8 %</h3><p>Performance moves by 0.02 points across 0.4 to 2.0 µm. The 2.9 eV window passes the spectrum to the absorber whatever its thickness; 0.025 µm is used.</p></div>
-<div class="step" data-step="ETL"><h3>Cs₂BiAgI₆ ETL: 27.81 → 27.99 %</h3><p>A 0.18-point rise across the sweep. The 2 µm choice is the end of the swept range, not a resolved optimum, and the page says so.</p></div>
+<div class="step" data-step="ETL"><h3>Cs₂BiAgI₆ ETL: 27.81 → 27.99 %</h3><p>A 0.18-point rise across the sweep; 2 µm is the end of the swept range.</p></div>
 <div class="step" data-step="T"><h3>Temperature: 300 → 400 K</h3><p>J<sub>SC</sub> does not move. V<sub>OC</sub> falls at −1.66 mV/K as the dark saturation current rises, and efficiency derates at −0.049 points per kelvin, about −0.18 %/K relative, milder than crystalline silicon's −0.35 to −0.45 %/K.</p></div>
 </div></div>
-<div class="card reveal" style="margin-top:24px"><img data-fig="fig_temperature" alt="Efficiency and open-circuit voltage against temperature from 300 to 400 kelvin; both fall linearly while short-circuit current stays at 25.96 milliamps per square centimetre." src="assets/fig_temperature_dark.svg"></div>
+<div class="vizcard reveal" style="margin-top:24px"><div class="vizhead"><b>J-V from 300 to 400 K</b><span class="legend"><span><i style="background:var(--c-cyan)"></i>300 K</span><span><i style="background:var(--c-rose)"></i>400 K</span></span></div><div class="viz wide" data-viz="temperature" role="img" aria-label="Six 3D ribbons of current density against voltage from 300 to 400 kelvin; the short-circuit current stays at 25.96 milliamps per square centimetre while the open-circuit voltage falls"><img class="fallback" alt="" data-viz-fig="viz_temperature" loading="lazy"></div><div class="vizfoot">J<sub>SC</sub> holds; V<sub>OC</sub> falls at −1.66 mV/K and efficiency at −0.049 points per kelvin. Hover a ribbon.</div></div>
 </div></section>
 
 <section class="story" id="contact"><div class="wrap">
 <div class="eyebrow reveal">03 · Back contact</div>
 <h2 class="reveal">Efficiency tracks the metal work function until the hole barrier closes.</h2>
+<div class="vizcard reveal" style="margin-bottom:28px"><div class="vizhead"><b>Back-contact metals</b><span class="legend"><span><i style="background:var(--c-warm)"></i>hole barrier</span><span><i style="background:var(--c-green)"></i>no barrier</span><span><i style="background:var(--c-rose)"></i>Ni, the practical optimum</span></span></div><div class="viz wide" data-viz="contact" role="img" aria-label="3D bars of simulated efficiency against metal work function for the back-contact metals; efficiency rises with work function until the hole barrier closes near 5.4 eV"><img class="fallback" alt="" data-viz-fig="viz_contact" loading="lazy"></div><div class="vizfoot">Bars sit at each metal's work function; the line marks the CdTe valence-band edge at 5.4 eV below vacuum. Hover a bar.</div></div>
 <div class="two">
 <div class="tablewrap reveal"><table><thead><tr><th>Metal</th><th class="num">Work function (eV)</th><th class="num">Hole barrier ≈ 5.4 − φ (eV)</th><th class="num">PCE (%)</th></tr></thead><tbody id="bcTable"></tbody></table></div>
 <div class="reveal"><p class="lead">For a p-type absorber the metal has to line up with the valence band. In this parameter set the CdTe valence-band edge sits at χ + E<sub>g</sub> = 3.9 + 1.5 = 5.4 eV below vacuum, so a metal with a smaller work function leaves a hole barrier of roughly 5.4 − φ: about 1.1 eV for aluminium, 0.2 eV for tungsten, none for nickel and above. Pt and Se edge out Ni by under half a point but are respectively scarce and toxic, so Ni is the practical optimum.</p><p class="note">Values tabulated in the capstone report (simulation outputs); the gold row is omitted because its recorded work function does not match literature values.</p></div>
 </div></div></section>
 
 <section class="story alt" id="scope"><div class="wrap">
-<div class="eyebrow reveal">04 · What the study does and does not show</div>
-<h2 class="reveal">A ranking you can trust more than the absolute number.</h2>
+<div class="eyebrow reveal">04 · Scope, and beyond the simulation</div>
+<h2 class="reveal">A screen of ten layers and nine metals, and the hardware it led to.</h2>
 <div class="two">
-<div class="card reveal"><b>It shows</b><p class="note">which of ten candidate layers and nine metals are compatible with a ZnSe/CdTe junction in a drift-diffusion model, how each layer's thickness trades current against voltage, and how the optimum stack derates with temperature.</p><b>It does not show</b><p class="note">an achievable cell efficiency. SCAPS-1D is one-dimensional and planar: no grain boundaries, no texture or anti-reflection design beyond the front glass, negligible series resistance, only the interface defects that were entered. 27.99 % is a ceiling for this parameter set, several points above the record for any CdTe device. Cs₂BiAgI₆ has not been demonstrated as an ETL on CdTe experimentally; the study is a motivation for trying it.</p></div>
+<div class="card reveal"><b>Scope and assumptions</b><p class="note">SCAPS-1D is a one-dimensional planar drift-diffusion model with literature input parameters, so the study's product is the ranking of ten electron-transport layers and nine metals for a ZnSe/CdTe junction, the thickness trade-offs of each layer and the temperature derating of the optimum stack; 27.99 % is the simulated ceiling for this parameter set, and Cs₂BiAgI₆ as an ETL on CdTe is the experiment the study motivates.</p></div>
 <div class="reveal"><div class="card"><b>Beyond the simulation</b><p class="note">The project's hardware concept, a detachable spiral thin-film panel with 17.9 % more active area than a planar panel of the same footprint, holds two granted Indian design registrations (434427-001, October 2024; 459195-001, May 2025) with one utility application under review. The work received the Best Poster Award at the 61st Annual Convention of Chemists (ACC 2024).</p></div>
 <pre style="margin-top:16px"><code>git clone https://github.com/Soham-ChemE/Perovskite-Solar-Cell-SCAPS1D-Optimization.git
 cd Perovskite-Solar-Cell-SCAPS1D-Optimization
@@ -115,23 +116,14 @@ document.addEventListener('siteready',()=>{
   document.getElementById('etlTable').innerHTML=D.ranking.map(r=>`<tr${r[0]==='Cs2BiAgI6'?' class="hl"':''}><td>${r[0].replace(/(\d)/g,'<sub>$1</sub>')}</td><td class="num">${r[1].toFixed(1)}</td><td class="num">${r[2].toFixed(3)}</td><td class="num">${r[3].toFixed(2)}</td><td class="num">${r[4].toFixed(2)}</td><td class="num">${r[5].toFixed(2)}</td></tr>`).join('');
   document.getElementById('bcTable').innerHTML=D.back_contact.map(b=>`<tr${b[0]==='Ni'?' class="hl"':''}><td>${b[0]}</td><td class="num">${b[1].toFixed(2)}</td><td class="num">${Math.max(0,5.4-b[1]).toFixed(1)}</td><td class="num">${b[2].toFixed(2)}</td></tr>`).join('');
   // sticky sweep chart
-  const pc=document.getElementById('sweepCanvas'), ctx=pc.getContext('2d'); let cur='CdTe';
+  let cur='CdTe';
   const names={CdTe:'CdTe absorber',FTO:'FTO front contact',ZnSe:'ZnSe buffer',ETL:'Cs₂BiAgI₆ electron-transport layer',T:'Optimum stack vs temperature'};
   function rows(k){return k==='T'?D.temperature.map(r=>({x:r.T,...r})):D.layers[k].map(r=>({x:r.thickness,...r}))}
-  function draw(){const w=pc.clientWidth,h=pc.clientHeight,dpr=Math.min(devicePixelRatio,2);if(pc.width!==w*dpr){pc.width=w*dpr;pc.height=h*dpr}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
-    const cs=getComputedStyle(root),ink=cs.getPropertyValue('--ink').trim(),muted=cs.getPropertyValue('--muted').trim(),acc=cs.getPropertyValue('--acc').trim();
-    const R=rows(cur); const xs=R.map(r=>r.x),ys=R.map(r=>r.PCE); const x0=Math.min(...xs),x1=Math.max(...xs); const y0=cur==='T'?22:26.8,y1=cur==='T'?28.5:28.1;
-    const L=44,Rm=12,T=12,B=30; const X=v=>L+(v-x0)/(x1-x0||1)*(w-L-Rm), Y=v=>T+(1-(v-y0)/(y1-y0))*(h-T-B);
-    ctx.strokeStyle=muted;ctx.globalAlpha=.4;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,T);ctx.lineTo(L,h-B);ctx.lineTo(w-Rm,h-B);ctx.stroke();ctx.globalAlpha=1;
-    ctx.fillStyle=muted;ctx.font='11px -apple-system,Segoe UI,Roboto,sans-serif';ctx.textAlign='center';xs.forEach(v=>ctx.fillText(cur==='T'?v+' K':v+' µm',X(v),h-B+16));ctx.textAlign='right';[y0,(y0+y1)/2,y1].forEach(v=>ctx.fillText(v.toFixed(1),L-6,Y(v)+4));
-    ctx.save();ctx.translate(12,h/2);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.fillText('PCE (%)',0,0);ctx.restore();
-    ctx.strokeStyle=acc;ctx.lineWidth=2.5;ctx.beginPath();R.forEach((r,i)=>{i?ctx.lineTo(X(r.x),Y(r.PCE)):ctx.moveTo(X(r.x),Y(r.PCE))});ctx.stroke();
-    ctx.fillStyle=acc;R.forEach(r=>{ctx.beginPath();ctx.arc(X(r.x),Y(r.PCE),4,0,7);ctx.fill()});
-    const best=R.reduce((a,b)=>b.PCE>a.PCE?b:a); ctx.fillStyle=ink;ctx.textAlign='center';ctx.fillText(best.PCE.toFixed(2)+' %',X(best.x),Y(best.PCE)-10)}
+  function draw(){document.dispatchEvent(new CustomEvent('scaps-step',{detail:cur}))}
   function setLayer(k){cur=k;const R=rows(k);const best=R.reduce((a,b)=>b.PCE>a.PCE?b:a);document.getElementById('sfTitle').textContent=names[k];document.getElementById('sfSub').textContent=k==='T'?'300 to 400 K, Cs₂BiAgI₆ 2 µm; values at 300 K':`thickness sweep, ${R[0].x} to ${R[R.length-1].x} µm; values at the best point (${best.x} µm)`;
     const show=k==='T'?R[0]:best;document.getElementById('kV').textContent=show.Voc.toFixed(3);document.getElementById('kJ').textContent=show.Jsc.toFixed(2);document.getElementById('kF').textContent=show.FF.toFixed(2);document.getElementById('kP').textContent=show.PCE.toFixed(2);draw()}
   
-  window.SITE.steps('.step',k=>setLayer(k)); addEventListener('resize',draw); document.addEventListener('themechange',draw);
+  window.SITE.steps('.step',k=>setLayer(k));
 });
 </script>
 </body>

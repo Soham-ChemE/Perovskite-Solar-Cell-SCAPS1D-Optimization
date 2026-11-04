@@ -4,5 +4,6 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 python scripts/make_figures.py     # figures/*.png and data/scaps_metrics.json from the eleven workbooks
-python docs/build_assets.py        # docs/assets/data.js, SVG figures and the social preview for the live page
+python docs/build_assets.py --no-page        # docs/assets/data.js, SVG figures and the social preview for the live page
 echo "Done. Compare the printed values with docs/CLAIMS.md."
+# python docs/build_assets.py --snap --qa --lighthouse   # static fallbacks for the 3D body scenes, both-theme screenshots, Lighthouse (needs playwright + lighthouse)

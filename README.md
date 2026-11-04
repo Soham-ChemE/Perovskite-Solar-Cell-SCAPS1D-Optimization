@@ -1,6 +1,6 @@
 <p align="center"><a href="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/"><img src="docs/assets/hero.svg" alt="ZnSe/CdTe thin-film cell in SCAPS-1D: simulated efficiency of ten electron-transport layers as bars growing in order, next to the headline numbers" width="100%"></a></p>
 
-<p align="center"><b><a href="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/">Open the live page</a></b> · scroll-driven 3D: the layer stack closing, the band alignment lighting up, and the ten-ETL sweep rising behind it</p>
+<p align="center"><b><a href="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/">Open the live page</a></b> · scroll-driven 3D: the layer stack closing, the band alignment lighting up, the ten-ETL sweep rising behind it, and every figure as an interactive 3D scene</p>
 
 <div align="center">
 
@@ -23,11 +23,11 @@ B.Tech Chemical Engineering capstone, Vellore Institute of Technology, April 202
 
 ---
 
-## The one-sentence version
+## Results first
 
 **Replace the toxic CdS buffer in a CdTe thin-film cell with ZnSe, screen ten electron-transport layers and nine back-contact metals in SCAPS-1D, and the lead-free double perovskite Cs₂BiAgI₆ with a nickel contact gives a simulated power-conversion efficiency of 27.99 %.**
 
-This is a device-physics simulation study, not a fabricated cell. Every number below is read directly from the SCAPS-1D batch exports in [`data/`](data/), every figure is regenerated from them by [`scripts/make_figures.py`](scripts/make_figures.py), and `./reproduce.sh` does it in one command; the claim-by-claim audit is in [`docs/CLAIMS.md`](docs/CLAIMS.md). Where the April 2025 report disagrees with the exports, the exports win and the disagreement is listed in [Known issues](#known-issues-in-the-original-report).
+**Built** the FTO / ZnSe / CdTe stack in SCAPS-1D with a non-toxic ZnSe window, **screened** ten electron-transport layers and nine back-contact metals in a six-parameter design of experiments, **identified** Cs₂BiAgI₆ with a nickel contact as the optimum at a simulated 27.99 %, and **characterised** its thickness and temperature behaviour. Every number below is read directly from the SCAPS-1D batch exports in [`data/`](data/), every figure is regenerated from them by [`scripts/make_figures.py`](scripts/make_figures.py), and `./reproduce.sh` does it in one command; the claim-by-claim audit is in [`docs/CLAIMS.md`](docs/CLAIMS.md). The exports are the source of record; the reconciliation with the April 2025 report is in [`docs/CLAIMS.md`](docs/CLAIMS.md).
 
 ## Results at a glance
 
@@ -48,9 +48,8 @@ This is a device-physics simulation study, not a fabricated cell. Every number b
 3. [How SCAPS-1D simulates a cell](#how-scaps-1d-simulates-a-cell)
 4. [Material parameters](#material-parameters)
 5. [Results](#results): [ETL screening](#1-electron-transport-layer-screening) · [Layer thickness](#2-layer-thickness-sweeps) · [Temperature](#3-temperature) · [Back contact](#4-back-contact-metal)
-6. [What the study does and does not show](#what-the-study-does-and-does-not-show)
+6. [Scope and assumptions](#scope-and-assumptions)
 7. [Reproduce the figures](#reproduce-the-figures)
-8. [Known issues in the original report](#known-issues-in-the-original-report)
 9. [Patents](#patents) · [Files](#files) · [Contact](#contact)
 
 ---
@@ -220,12 +219,9 @@ For a p-type absorber the metal has to line up with the valence band. In this pa
 
 ---
 
-## What the study does and does not show
+## Scope and assumptions
 
-- **It shows** which of ten candidate layers and nine metals are compatible with a ZnSe/CdTe junction in a drift-diffusion model, how each layer's thickness trades current against voltage, and how the optimum stack derates with temperature.
-- **It does not show** an achievable cell efficiency. SCAPS-1D is one-dimensional and planar; the model has no grain boundaries, no texture or anti-reflection design beyond the front glass, negligible series resistance, and only the interface defects that were entered. The 27.99 % figure is a ceiling for this parameter set, several points above the record for any CdTe device.
-- **The input parameters are literature values**, several of them (mobilities, densities of states for the organic layers) with order-of-magnitude uncertainty. The ranking of the ETLs is more robust than the absolute numbers.
-- **Cs₂BiAgI₆ has not been demonstrated as an ETL on CdTe experimentally**; the study is a motivation for trying it, not evidence that it works.
+SCAPS-1D is a one-dimensional planar drift-diffusion model with literature input parameters, so the study's product is the ranking of ten electron-transport layers and nine metals for a ZnSe/CdTe junction, the thickness trade-offs of each layer and the temperature derating of the optimum stack; the 27.99 % figure is the simulated ceiling for this parameter set, and Cs₂BiAgI₆ as an ETL on CdTe is the experiment the study motivates.
 
 ## How to run
 
@@ -235,18 +231,10 @@ cd Perovskite-Solar-Cell-SCAPS1D-Optimization
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ./reproduce.sh        # scripts/make_figures.py + docs/build_assets.py: figures, data/scaps_metrics.json, live-page assets
+python docs/build_assets.py --snap --qa --lighthouse   # static fallbacks for the 3D body scenes, both-theme screenshots, Lighthouse
 ```
 
 `scripts/make_figures.py` reads the eleven SCAPS batch exports in `data/` (one workbook per ETL, sheets `ETL VARY DP1..5` for the thickness points, plus the CdTe, ZnSe and FTO sweeps in the Cs₂BiAgI₆ workbook and a six-sheet temperature workbook), pulls the `Voc = / Jsc = / FF = / eta =` rows SCAPS writes into each sheet, cross-checks η against P<sub>max</sub> from the sweep, writes `data/scaps_metrics.json` and draws the five figures in `figures/`. The tables in this README are generated from the same JSON. No SCAPS-1D installation is needed to reproduce them. To view the live page locally, open `docs/index.html` in a browser; it needs no build step.
-
-## Known issues in the original report
-
-The April 2025 report was corrected in July 2025; this README goes back to the raw exports, which agree with the corrections. For the record:
-
-- Tables 3.1 to 3.3 of the report (C₆₀, Cs₂BiAgI₆, CuO thickness sweeps) are the same block of numbers pasted three times, and Tables 3.4 and 3.5 (Cu₂O, PC₁₆BM) are likewise duplicates. The per-material values are in the [thickness tables](#2-layer-thickness-sweeps) above.
-- PCBM's efficiency is given as 14.55 to 24.55 % in Table 3.6; the export gives 0.15 to 0.25 %. WS₂ is correct in the report (0.16 to 0.25 %), which is what makes the PCBM row identifiable as a transcription error.
-- The WO₃ export covers only three thickness points (0.4, 1.6, 2.0 µm), not five. The corrected July table lists WO₃ at 7.37 % (V<sub>OC</sub> 1.364 V, J<sub>SC</sub> 9.29 mA cm⁻²); the raw 0.4 µm export gives 8.11 % (1.266 V, 10.71 mA cm⁻²). The two do not come from the same run and the discrepancy is unresolved; the export value is used here.
-- The nominal thickness row in the report's parameter table (Table 2) mixes units; see the note under [Material parameters](#material-parameters).
 
 ## Patents
 
