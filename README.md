@@ -1,8 +1,9 @@
-<p align="center"><a href="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/"><img src="docs/assets/hero.png" alt="Live page: 3D exploded layer stack of the FTO/ZnSe/CdTe/Cs2BiAgI6/Ni cell with the band alignment drawn beside it" width="100%"></a></p>
+<p align="center"><a href="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/"><img src="docs/assets/hero.svg" alt="ZnSe/CdTe thin-film cell in SCAPS-1D: simulated efficiency of ten electron-transport layers as bars growing in order, next to the headline numbers" width="100%"></a></p>
+
+<p align="center"><b><a href="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/">Open the live page</a></b> · scroll-driven 3D: the layer stack closing, the band alignment lighting up, and the ten-ETL sweep rising behind it</p>
 
 <div align="center">
 
-### [▶ View the live page](https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/) · scroll to stack the layers and light the band diagram, step through every sweep
 
 </div>
 
