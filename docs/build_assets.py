@@ -107,3 +107,45 @@ fig.text(0.05, 0.62, "Ten electron-transport layers, nine back-contact\nmetals, 
 fig.text(0.05, 0.38, f"Best simulated efficiency {best['PCE']:.2f} % with Cs₂BiAgI₆\nV_OC {best['Voc']:.2f} V · J_SC {best['Jsc']:.2f} mA/cm² · FF {best['FF']:.1f} %\nSimulation ceiling, not a fabricated cell", color="#f59e0b", fontsize=14, va="top")
 fig.text(0.05, 0.10, "Soham Kavathekar  |  github.com/Soham-ChemE", color="#8b98a9", fontsize=12)
 fig.savefig(os.path.join(OUT, "social-preview.png"), dpi=100, facecolor=DARK); plt.close(fig); print("wrote social-preview.png")
+
+# ---------------- animated README hero (SVG with CSS keyframes; GitHub renders these through <img>) ----------------
+# The ten-ETL ranking as bars that grow in order of simulated efficiency, from the same `ranking` list as data.js, with the
+# headline numbers cycling. No SMIL, no scripts, no fonts.
+def _sub(s): return "".join("₀₁₂₃₄₅₆₇₈₉"[int(ch)] if ch.isdigit() else ch for ch in s)
+PX, PY, PW, PH = 930, 70, 580, 360
+rk = data["ranking"]; n = len(rk); bw = PW / n * .66; gapw = PW / n * .34
+bars = ""; css = ""
+for i, r in enumerate(rk):
+    h = max(2, r[5] / 28 * (PH - 30)); x = PX + gapw / 2 + i * (bw + gapw); col = "#f87171" if i == 0 else ("#f59e0b" if r[5] > 20 else "#22d3ee" if r[5] > 5 else "#64748b")
+    bars += f'<g class="br b{i}"><rect x="{x:.1f}" y="{PY + PH - h:.1f}" width="{bw:.1f}" height="{h:.1f}" rx="4" fill="{col}"/><text class="t bl" x="{x + bw / 2:.1f}" y="{PY + PH - h - 8:.1f}" text-anchor="middle" fill="{col}">{r[5]:.1f}</text><text class="t bn" x="{x + bw / 2:.1f}" y="{PY + PH + 18:.1f}" text-anchor="middle">{_sub(r[0])}</text></g>'
+    css += f".b{i} rect{{transform-origin:{x + bw / 2:.1f}px {PY + PH:.1f}px;animation-delay:{i * .5:.1f}s}}.b{i} .bl{{animation-delay:{i * .5 + .6:.1f}s}}\n"
+S = data["stats"]
+lines = [(f"{S['best_pce']:.2f} %", "best simulated efficiency: Cs₂BiAgI₆ electron-transport layer, Ni contact"), (f"{S['best_voc']:.2f} V · {S['best_jsc']:.2f} mA/cm² · FF {S['best_ff']:.1f} %", "open-circuit voltage, short-circuit current, fill factor at the optimum"),
+         (f"{S['n_etl']} ETLs · {S['n_metals'] + 1} metals", "screened in SCAPS-1D with ZnSe replacing the CdS window"), (f"{data['voc_slope_mV_per_K']} mV/K", "V_OC temperature coefficient, 300 to 400 K; J_SC does not move")]
+stat_svg = "".join(f'<g class="st s{i}"><text x="80" y="268" class="big">{a}</text><text x="80" y="300" class="small">{b}</text></g>' for i, (a, b) in enumerate(lines))
+svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" width="1600" height="500" role="img" aria-label="ZnSe/CdTe thin-film cell in SCAPS-1D: simulated efficiency of ten electron-transport layers as bars growing in order, next to the headline numbers">
+<style>
+.t{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}}
+.h{{font-size:54px;font-weight:800;fill:#e6edf3;letter-spacing:-1.5px}}.sub{{font-size:21px;fill:#8b98a9}}.big{{font-size:32px;font-weight:800;fill:#22d3ee}}.small{{font-size:16px;fill:#8b98a9}}.foot{{font-size:15px;fill:#5b6676}}.ax{{font-size:13px;fill:#8b98a9}}.bl{{font-size:14px;font-weight:700;opacity:0;animation:show 14s infinite}}.bn{{font-size:12px;fill:#8b98a9}}
+.br rect{{transform:scaleY(0);animation:grow 14s infinite}}
+@keyframes grow{{0%{{transform:scaleY(0)}}5%{{transform:scaleY(1)}}88%{{transform:scaleY(1)}}94%{{transform:scaleY(0)}}100%{{transform:scaleY(0)}}}}
+@keyframes show{{0%{{opacity:0}}4%{{opacity:1}}86%{{opacity:1}}90%{{opacity:0}}100%{{opacity:0}}}}
+{css}
+.st{{opacity:0;animation:cycle 16s infinite}}.s1{{animation-delay:4s}}.s2{{animation-delay:8s}}.s3{{animation-delay:12s}}
+@keyframes cycle{{0%,22%{{opacity:1}}25%,97%{{opacity:0}}100%{{opacity:1}}}}
+@media (prefers-reduced-motion:reduce){{.br rect,.bl,.st{{animation:none}}.br rect{{transform:none}}.bl,.s0{{opacity:1}}}}
+</style>
+<rect width="1600" height="500" fill="#0b1220"/>
+<g class="t">
+<text x="80" y="120" class="h">Swap the toxic buffer.</text><text x="80" y="178" class="h">Screen the rest.</text>
+<text x="80" y="218" class="sub">SCAPS-1D device-physics study of an FTO / ZnSe / CdTe thin-film cell</text>
+{stat_svg}
+<text x="80" y="420" class="foot">A ceiling for this parameter set, not a fabricated cell · every number from the raw SCAPS exports in the repository</text>
+<text x="80" y="446" class="foot">Right: simulated efficiency of the ten electron-transport layers at their best thickness · open the live page for the 3D stack</text>
+<rect x="{PX}" y="{PY}" width="{PW}" height="{PH}" fill="none" stroke="#1f2a3c"/>
+<text x="{PX - 12}" y="{PY + PH / 2}" class="ax" text-anchor="middle" transform="rotate(-90 {PX - 12} {PY + PH / 2})">simulated PCE, %</text>
+{bars}
+</g>
+</svg>"""
+with open(os.path.join(OUT, "hero.svg"), "w", encoding="utf-8") as f: f.write(svg)
+print("wrote hero.svg", os.path.getsize(os.path.join(OUT, "hero.svg")), "bytes")

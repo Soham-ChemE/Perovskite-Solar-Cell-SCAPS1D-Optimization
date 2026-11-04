@@ -10,53 +10,28 @@
 <meta property="og:image" content="https://soham-cheme.github.io/Perovskite-Solar-Cell-SCAPS1D-Optimization/assets/social-preview.png">
 <meta name="theme-color" content="#0b1220">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='4' fill='%23f59e0b'/%3E%3Crect x='8' y='8' width='16' height='5' fill='%230b1220'/%3E%3Crect x='8' y='15' width='16' height='9' fill='%230b1220' opacity='.5'/%3E%3C/svg%3E">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<style>
-:root{--bg:#f6f8fb;--bg2:#ffffff;--ink:#0b1220;--muted:#5b6676;--line:#dfe5ee;--acc:#d97706;--acc2:#0891b2;--card:#ffffff;--shadow:0 10px 40px rgba(11,18,32,.08);--good:#059669;--bad:#dc2626}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--bg2:#0f172a;--ink:#e6edf3;--muted:#8b98a9;--line:#1f2a3c;--acc:#f59e0b;--acc2:#22d3ee;--card:#111a2b;--shadow:0 10px 40px rgba(0,0,0,.4);--good:#34d399;--bad:#f87171}}
-:root[data-theme="dark"]{--bg:#0b1220;--bg2:#0f172a;--ink:#e6edf3;--muted:#8b98a9;--line:#1f2a3c;--acc:#f59e0b;--acc2:#22d3ee;--card:#111a2b;--shadow:0 10px 40px rgba(0,0,0,.4);--good:#34d399;--bad:#f87171}
-*{box-sizing:border-box}html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
-a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
-.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:18px;height:52px}nav .brand{font-weight:700;color:var(--ink)}
-nav .links{display:flex;gap:16px;margin-left:auto;font-size:14px}nav .links a{color:var(--muted)}nav .links a:hover{color:var(--ink);text-decoration:none}
-@media (max-width:640px){nav .links a.hide-sm{display:none}}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;font-size:15px;border:0;cursor:pointer}.btn:hover{text-decoration:none;opacity:.9}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:15px}
-.hero-track{height:220vh;position:relative}.hero{position:sticky;top:0;height:100vh;overflow:hidden}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 42%,color-mix(in srgb,var(--bg) 80%,transparent) 76%,var(--bg) 100%)}
-.hero .copy{position:absolute;left:0;right:0;bottom:9vh;pointer-events:none}
-.hero h1{font-size:clamp(32px,5.4vw,66px);line-height:1.02;letter-spacing:-.03em;margin:0 0 14px;max-width:15ch;font-weight:800}
-.hero p{font-size:clamp(16px,1.6vw,20px);color:var(--muted);max-width:58ch;margin:0 0 20px}
-.hero .cta{pointer-events:auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.readout{position:absolute;right:16px;top:66px;background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:16px;padding:12px 14px;backdrop-filter:blur(8px);min-width:250px;font-size:13px;color:var(--muted)}
+<link rel="stylesheet" href="assets/site.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script defer src="assets/data.js"></script>
+<script defer src="assets/site.js"></script>
+<script type="module" src="assets/scene.js"></script>
+<style>.readout{position:absolute;right:16px;top:66px;background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:16px;padding:12px 14px;backdrop-filter:blur(8px);min-width:250px;font-size:13px;color:var(--muted)}
 .readout b{color:var(--ink)}.readout .big{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}.readout .row{display:flex;justify-content:space-between;gap:12px;margin-top:5px}
-.scrollhint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-@media (max-width:640px){.readout{top:60px;right:8px;left:8px;min-width:0;padding:8px 10px}.readout .big{font-size:22px}.hero-track{height:200vh}.hero .copy{bottom:5vh}}
-.stats{position:relative;z-index:2;background:var(--bg);border-top:1px solid var(--line)}.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:44px 0}@media (max-width:760px){.stats .grid{grid-template-columns:repeat(2,1fr)}}
-.stat .n{font-size:clamp(34px,4.6vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1}.stat .n small{font-size:.45em;color:var(--muted);font-weight:600;margin-left:3px}.stat .l{color:var(--muted);font-size:14px;margin-top:8px}
-section.story{position:relative;z-index:2;background:var(--bg);padding:84px 0}section.story.alt{background:var(--bg2)}
-.eyebrow{color:var(--acc);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12px;margin-bottom:12px}
-h2{font-size:clamp(28px,4vw,46px);letter-spacing:-.03em;line-height:1.08;margin:0 0 18px;max-width:24ch}.lead{font-size:clamp(17px,1.5vw,20px);color:var(--muted);max-width:62ch;margin:0 0 28px}
-.two{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}@media (max-width:820px){.two{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.card img{width:100%;height:auto;display:block}
-table{width:100%;border-collapse:collapse;font-size:14.5px}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600;font-size:13px}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}tr.hl td{color:var(--acc);font-weight:700}
-.tablewrap{overflow-x:auto}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-.sticky-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}@media (max-width:820px){.sticky-wrap{grid-template-columns:1fr}}
-.sticky-fig{position:sticky;top:72px;align-self:start;border-radius:24px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px}
 .sticky-fig h4{margin:0 0 4px;font-size:15px}.sticky-fig .sub{color:var(--muted);font-size:13px;margin-bottom:10px}.sticky-fig canvas{width:100%;height:300px;display:block}
 .sticky-fig .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.sticky-fig .kpis div{border:1px solid var(--line);border-radius:10px;padding:8px}.sticky-fig .kpis b{display:block;font-size:19px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.sticky-fig .kpis span{font-size:11px;color:var(--muted)}
-.steps{display:flex;flex-direction:column;gap:30vh;padding:12vh 0 26vh}@media (max-width:820px){.steps{gap:16vh;padding:6vh 0 12vh}.sticky-fig{top:60px}.sticky-fig canvas{height:200px}}
-.step{opacity:.35;transition:opacity .4s}.step.active{opacity:1}.step h3{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin:0 0 10px}.step p{color:var(--muted);margin:0 0 10px;font-size:17px}
-pre{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;overflow:auto;font-size:13.5px;line-height:1.55}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.note{font-size:13px;color:var(--muted)}
-footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+:root{--good:#059669;--bad:#dc2626}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--good:#34d399;--bad:#f87171}}
+:root[data-theme="dark"]{--good:#34d399;--bad:#f87171}
+.readout{background:var(--glass)}
+@media (max-width:640px){.readout{top:60px;right:8px;left:8px;min-width:0;padding:8px 10px}.readout .big{font-size:22px}}
+.sticky-fig{padding:18px;height:auto;min-height:0}.sticky-fig canvas{width:100%;height:300px;display:block}@media (max-width:820px){.sticky-fig{height:auto}.sticky-fig canvas{height:200px}}
+tr.hl td{color:var(--acc);font-weight:700}
 </style>
+<noscript><style>.hero .fallback{opacity:1}.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="#top">ZnSe/CdTe in SCAPS-1D</a>
@@ -64,7 +39,8 @@ footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid va
 <button class="toggle" id="themeBtn" aria-label="Toggle dark or light theme" title="Toggle theme">◐</button></div></nav>
 
 <div class="hero-track" id="top"><div class="hero">
-<canvas id="heroCanvas" role="img" aria-label="3D exploded layer stack of the simulated cell: FTO, ZnSe, CdTe, the Cs2BiAgI6 electron-transport layer and the nickel back contact, with the conduction and valence band edges of each layer drawn as a band-alignment ribbon beside it. Scrolling stacks the layers together and lights the band diagram."></canvas>
+<canvas id="heroCanvas" role="img" aria-label="3D exploded layer stack of the simulated cell: FTO, ZnSe, CdTe, the Cs2BiAgI6 electron-transport layer and the nickel back contact, with the conduction and valence band edges of each layer drawn as a band-alignment ribbon beside it. Scrolling stacks the layers together, lights the band diagram and raises the ten-ETL sweep as bars behind the stack."></canvas>
+<img class="fallback" alt="" data-src="assets/hero.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
 <div class="shade"></div>
 <div class="readout" aria-live="polite"><div>Layer in focus</div><div class="big" id="roName">FTO</div><div class="row"><span>thickness <b id="roT">0.4 µm</b></span><span>E<sub>g</sub> <b id="roEg">3.50 eV</b></span></div><div class="row"><span>χ <b id="roChi">4.00 eV</b></span><span id="roRole">front contact</span></div></div>
 <div class="copy"><div class="wrap">
@@ -74,11 +50,11 @@ footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid va
 </div></div><div class="scrollhint">Scroll</div>
 </div></div>
 
-<div class="stats"><div class="wrap"><div class="grid">
+<div class="stats over"><div class="wrap"><div class="grid">
 <div class="stat reveal"><div class="n" data-count="27.99" data-format="2">0.00<small>%</small></div><div class="l">best simulated power-conversion efficiency, Cs₂BiAgI₆ ETL, Ni contact</div></div>
-<div class="stat reveal d1"><div class="n" data-count="1.21" data-format="2">0.00<small>V</small></div><div class="l">open-circuit voltage; J<sub>SC</sub> 25.96 mA/cm², FF 89.3 %</div></div>
-<div class="stat reveal d2"><div class="n" data-count="10" data-format="int">0</div><div class="l">electron-transport layers screened, oxides to fullerenes to a double perovskite</div></div>
-<div class="stat reveal d3"><div class="n" data-count="9" data-format="int">0</div><div class="l">back-contact metals, work function 4.3 to 5.9 eV</div></div>
+<div class="stat reveal"><div class="n" data-count="1.21" data-format="2">0.00<small>V</small></div><div class="l">open-circuit voltage; J<sub>SC</sub> 25.96 mA/cm², FF 89.3 %</div></div>
+<div class="stat reveal"><div class="n" data-count="10" data-format="int">0</div><div class="l">electron-transport layers screened, oxides to fullerenes to a double perovskite</div></div>
+<div class="stat reveal"><div class="n" data-count="9" data-format="int">0</div><div class="l">back-contact metals, work function 4.3 to 5.9 eV</div></div>
 </div></div></div>
 
 <section class="story" id="etl"><div class="wrap">
@@ -87,7 +63,7 @@ footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid va
 <p class="lead reveal">Each ETL was swept from 0.4 to 2.0 µm with the rest of the stack fixed (FTO 0.4 / ZnSe 0.025 / CdTe 3 µm / Ni). Cs₂BiAgI₆ and C₆₀ share near-ideal fill factors and almost the full 26 mA/cm² a 1.5 eV absorber can deliver under AM 1.5G; both have the same electron affinity as CdTe, so there is no conduction-band step. PCBM and WS₂ keep a normal V<sub>OC</sub> and fill factor but lose the current, so the loss is in collection, not the junction.</p>
 <div class="two">
 <div class="card reveal"><img data-fig="fig_etl" alt="Horizontal bar chart of simulated efficiency for ten electron-transport layers: Cs2BiAgI6 27.99 percent, C60 27.50, PC16BM 23.41, Cu2O 22.63, CuO 20.56, Sb2Se3 20.50, TiO2 13.99, WO3 8.11, PCBM 0.25, WS2 0.25." src="assets/fig_etl_dark.svg"></div>
-<div class="tablewrap reveal d1"><table><thead><tr><th>ETL</th><th class="num">t (µm)</th><th class="num">V<sub>OC</sub> (V)</th><th class="num">J<sub>SC</sub></th><th class="num">FF (%)</th><th class="num">PCE (%)</th></tr></thead><tbody id="etlTable"></tbody></table></div>
+<div class="tablewrap reveal"><table><thead><tr><th>ETL</th><th class="num">t (µm)</th><th class="num">V<sub>OC</sub> (V)</th><th class="num">J<sub>SC</sub></th><th class="num">FF (%)</th><th class="num">PCE (%)</th></tr></thead><tbody id="etlTable"></tbody></table></div>
 </div>
 <div class="card reveal" style="margin-top:24px"><img data-fig="fig_jv" alt="Current density against voltage under AM 1.5G for all ten electron-transport layers at their best thickness; the exports stop at 1.16 volts." src="assets/fig_jv_dark.svg"></div>
 </div></section>
@@ -100,11 +76,11 @@ footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid va
 <div class="sticky-fig"><h4 id="sfTitle">CdTe absorber</h4><div class="sub" id="sfSub">thickness sweep, 0.4 to 2.0 µm</div><canvas id="sweepCanvas" role="img" aria-label="Line chart of efficiency against the swept parameter for the selected layer"></canvas>
 <div class="kpis"><div><b id="kV">–</b><span>V<sub>OC</sub> (V)</span></div><div><b id="kJ">–</b><span>J<sub>SC</sub> (mA/cm²)</span></div><div><b id="kF">–</b><span>FF (%)</span></div><div><b id="kP">–</b><span>PCE (%)</span></div></div></div>
 <div class="steps" id="steps">
-<div class="step active" data-layer="CdTe"><h3>CdTe absorber: 27.23 → 27.85 %</h3><p>J<sub>SC</sub> rises with thickness as more photons are absorbed; V<sub>OC</sub> falls slightly with more bulk recombination. The optimum stack uses 3 µm.</p></div>
-<div class="step" data-layer="FTO"><h3>FTO front contact: 27.89 → 26.96 %</h3><p>Thinner is better. A thicker transparent conductor is a parasitic absorber in front of the junction.</p></div>
-<div class="step" data-layer="ZnSe"><h3>ZnSe buffer: flat at 27.8 %</h3><p>Performance moves by 0.02 points across 0.4 to 2.0 µm. The 2.9 eV window passes the spectrum to the absorber whatever its thickness; 0.025 µm is used.</p></div>
-<div class="step" data-layer="ETL"><h3>Cs₂BiAgI₆ ETL: 27.81 → 27.99 %</h3><p>A 0.18-point rise across the sweep. The 2 µm choice is the end of the swept range, not a resolved optimum, and the page says so.</p></div>
-<div class="step" data-layer="T"><h3>Temperature: 300 → 400 K</h3><p>J<sub>SC</sub> does not move. V<sub>OC</sub> falls at −1.66 mV/K as the dark saturation current rises, and efficiency derates at −0.049 points per kelvin, about −0.18 %/K relative, milder than crystalline silicon's −0.35 to −0.45 %/K.</p></div>
+<div class="step active" data-step="CdTe"><h3>CdTe absorber: 27.23 → 27.85 %</h3><p>J<sub>SC</sub> rises with thickness as more photons are absorbed; V<sub>OC</sub> falls slightly with more bulk recombination. The optimum stack uses 3 µm.</p></div>
+<div class="step" data-step="FTO"><h3>FTO front contact: 27.89 → 26.96 %</h3><p>Thinner is better. A thicker transparent conductor is a parasitic absorber in front of the junction.</p></div>
+<div class="step" data-step="ZnSe"><h3>ZnSe buffer: flat at 27.8 %</h3><p>Performance moves by 0.02 points across 0.4 to 2.0 µm. The 2.9 eV window passes the spectrum to the absorber whatever its thickness; 0.025 µm is used.</p></div>
+<div class="step" data-step="ETL"><h3>Cs₂BiAgI₆ ETL: 27.81 → 27.99 %</h3><p>A 0.18-point rise across the sweep. The 2 µm choice is the end of the swept range, not a resolved optimum, and the page says so.</p></div>
+<div class="step" data-step="T"><h3>Temperature: 300 → 400 K</h3><p>J<sub>SC</sub> does not move. V<sub>OC</sub> falls at −1.66 mV/K as the dark saturation current rises, and efficiency derates at −0.049 points per kelvin, about −0.18 %/K relative, milder than crystalline silicon's −0.35 to −0.45 %/K.</p></div>
 </div></div>
 <div class="card reveal" style="margin-top:24px"><img data-fig="fig_temperature" alt="Efficiency and open-circuit voltage against temperature from 300 to 400 kelvin; both fall linearly while short-circuit current stays at 25.96 milliamps per square centimetre." src="assets/fig_temperature_dark.svg"></div>
 </div></section>
@@ -114,7 +90,7 @@ footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid va
 <h2 class="reveal">Efficiency tracks the metal work function until the hole barrier closes.</h2>
 <div class="two">
 <div class="tablewrap reveal"><table><thead><tr><th>Metal</th><th class="num">Work function (eV)</th><th class="num">Hole barrier ≈ 5.4 − φ (eV)</th><th class="num">PCE (%)</th></tr></thead><tbody id="bcTable"></tbody></table></div>
-<div class="reveal d1"><p class="lead">For a p-type absorber the metal has to line up with the valence band. In this parameter set the CdTe valence-band edge sits at χ + E<sub>g</sub> = 3.9 + 1.5 = 5.4 eV below vacuum, so a metal with a smaller work function leaves a hole barrier of roughly 5.4 − φ: about 1.1 eV for aluminium, 0.2 eV for tungsten, none for nickel and above. Pt and Se edge out Ni by under half a point but are respectively scarce and toxic, so Ni is the practical optimum.</p><p class="note">Values tabulated in the capstone report (simulation outputs); the gold row is omitted because its recorded work function does not match literature values.</p></div>
+<div class="reveal"><p class="lead">For a p-type absorber the metal has to line up with the valence band. In this parameter set the CdTe valence-band edge sits at χ + E<sub>g</sub> = 3.9 + 1.5 = 5.4 eV below vacuum, so a metal with a smaller work function leaves a hole barrier of roughly 5.4 − φ: about 1.1 eV for aluminium, 0.2 eV for tungsten, none for nickel and above. Pt and Se edge out Ni by under half a point but are respectively scarce and toxic, so Ni is the practical optimum.</p><p class="note">Values tabulated in the capstone report (simulation outputs); the gold row is omitted because its recorded work function does not match literature values.</p></div>
 </div></div></section>
 
 <section class="story alt" id="scope"><div class="wrap">
@@ -122,7 +98,7 @@ footer{position:relative;z-index:2;background:var(--bg2);border-top:1px solid va
 <h2 class="reveal">A ranking you can trust more than the absolute number.</h2>
 <div class="two">
 <div class="card reveal"><b>It shows</b><p class="note">which of ten candidate layers and nine metals are compatible with a ZnSe/CdTe junction in a drift-diffusion model, how each layer's thickness trades current against voltage, and how the optimum stack derates with temperature.</p><b>It does not show</b><p class="note">an achievable cell efficiency. SCAPS-1D is one-dimensional and planar: no grain boundaries, no texture or anti-reflection design beyond the front glass, negligible series resistance, only the interface defects that were entered. 27.99 % is a ceiling for this parameter set, several points above the record for any CdTe device. Cs₂BiAgI₆ has not been demonstrated as an ETL on CdTe experimentally; the study is a motivation for trying it.</p></div>
-<div class="reveal d1"><div class="card"><b>Beyond the simulation</b><p class="note">The project's hardware concept, a detachable spiral thin-film panel with 17.9 % more active area than a planar panel of the same footprint, holds two granted Indian design registrations (434427-001, October 2024; 459195-001, May 2025) with one utility application under review. The work received the Best Poster Award at the 61st Annual Convention of Chemists (ACC 2024).</p></div>
+<div class="reveal"><div class="card"><b>Beyond the simulation</b><p class="note">The project's hardware concept, a detachable spiral thin-film panel with 17.9 % more active area than a planar panel of the same footprint, holds two granted Indian design registrations (434427-001, October 2024; 459195-001, May 2025) with one utility application under review. The work received the Best Poster Award at the 61st Annual Convention of Chemists (ACC 2024).</p></div>
 <pre style="margin-top:16px"><code>git clone https://github.com/Soham-ChemE/Perovskite-Solar-Cell-SCAPS1D-Optimization.git
 cd Perovskite-Solar-Cell-SCAPS1D-Optimization
 pip install -r requirements.txt
@@ -131,25 +107,13 @@ pip install -r requirements.txt
 <div class="card reveal" style="margin-top:28px"><b>Cite</b><p class="note">S. Kavathekar, S. Malokar and S. Nagaraj, <i>Optimisation of a ZnSe/CdTe thin-film solar cell with screened electron-transport layers and back contacts in SCAPS-1D</i>, B.Tech capstone, Vellore Institute of Technology, 2025 (guide: Dr. Dharmendra Kumar Bal). github.com/Soham-ChemE/Perovskite-Solar-Cell-SCAPS1D-Optimization</p></div>
 </div></section>
 
-<footer><div class="wrap"><div><b style="color:var(--ink)">Soham Kavathekar</b> · MS Chemical &amp; Biomolecular Engineering, University of Pennsylvania<br><a href="mailto:stg3719@seas.upenn.edu">stg3719@seas.upenn.edu</a> · <a href="https://www.linkedin.com/in/soham-kavathekar-cheme">linkedin.com/in/soham-kavathekar-cheme</a> · <a href="https://github.com/Soham-ChemE">github.com/Soham-ChemE</a></div><div>SCAPS-1D 3.3 (University of Gent) · Three.js r160</div></div></footer>
+<footer><div class="wrap"><div><b style="color:var(--ink)">Soham Kavathekar</b> · MS Chemical &amp; Biomolecular Engineering, University of Pennsylvania<br><a href="mailto:stg3719@seas.upenn.edu">stg3719@seas.upenn.edu</a> · <a href="https://www.linkedin.com/in/soham-kavathekar-cheme">linkedin.com/in/soham-kavathekar-cheme</a> · <a href="https://github.com/Soham-ChemE">github.com/Soham-ChemE</a></div><div>SCAPS-1D 3.3 (University of Gent) · three.js 0.186 · GSAP 3.15 · Lenis 1.3 · <a href="DESIGN.md">design notes</a></div></div></footer>
 
-<script src="assets/data.js"></script>
 <script>
-(function(){
-  const D=window.SCAPS, root=document.documentElement, btn=document.getElementById('themeBtn');
-  const saved=(()=>{try{return localStorage.getItem('theme')}catch(e){return null}})(); if(saved) root.setAttribute('data-theme',saved);
-  const isDark=()=>root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
-  function applyFigs(){const t=isDark()?'dark':'light';document.querySelectorAll('img[data-fig]').forEach(i=>{i.src='assets/'+i.dataset.fig+'_'+t+'.svg'});document.dispatchEvent(new CustomEvent('themechange',{detail:{dark:isDark()}}))}
-  btn.addEventListener('click',()=>{const n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}applyFigs()});
-  matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyFigs); applyFigs(); window.__isDark=isDark;
-  const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches; window.__reduced=reduced;
+document.addEventListener('siteready',()=>{
+  const D=window.SCAPS, root=document.documentElement;
   document.getElementById('etlTable').innerHTML=D.ranking.map(r=>`<tr${r[0]==='Cs2BiAgI6'?' class="hl"':''}><td>${r[0].replace(/(\d)/g,'<sub>$1</sub>')}</td><td class="num">${r[1].toFixed(1)}</td><td class="num">${r[2].toFixed(3)}</td><td class="num">${r[3].toFixed(2)}</td><td class="num">${r[4].toFixed(2)}</td><td class="num">${r[5].toFixed(2)}</td></tr>`).join('');
   document.getElementById('bcTable').innerHTML=D.back_contact.map(b=>`<tr${b[0]==='Ni'?' class="hl"':''}><td>${b[0]}</td><td class="num">${b[1].toFixed(2)}</td><td class="num">${Math.max(0,5.4-b[1]).toFixed(1)}</td><td class="num">${b[2].toFixed(2)}</td></tr>`).join('');
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15}); document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  const fmt=(v,f)=>f==='int'?Math.round(v).toLocaleString('en-US'):v.toFixed(+f);
-  const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;co.unobserve(e.target);const el=e.target,target=+el.dataset.count,f=el.dataset.format;const set=v=>{el.firstChild.textContent=fmt(v,f)};
-    if(reduced){set(target);return}const t0=performance.now(),d=1400;(function tick(t){const p=Math.min(1,(t-t0)/d),k=1-Math.pow(1-p,3);set(target*k);if(p<1)requestAnimationFrame(tick)})(t0)}),{threshold:.6});
-  document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
   // sticky sweep chart
   const pc=document.getElementById('sweepCanvas'), ctx=pc.getContext('2d'); let cur='CdTe';
   const names={CdTe:'CdTe absorber',FTO:'FTO front contact',ZnSe:'ZnSe buffer',ETL:'Cs₂BiAgI₆ electron-transport layer',T:'Optimum stack vs temperature'};
@@ -166,55 +130,9 @@ pip install -r requirements.txt
     const best=R.reduce((a,b)=>b.PCE>a.PCE?b:a); ctx.fillStyle=ink;ctx.textAlign='center';ctx.fillText(best.PCE.toFixed(2)+' %',X(best.x),Y(best.PCE)-10)}
   function setLayer(k){cur=k;const R=rows(k);const best=R.reduce((a,b)=>b.PCE>a.PCE?b:a);document.getElementById('sfTitle').textContent=names[k];document.getElementById('sfSub').textContent=k==='T'?'300 to 400 K, Cs₂BiAgI₆ 2 µm; values at 300 K':`thickness sweep, ${R[0].x} to ${R[R.length-1].x} µm; values at the best point (${best.x} µm)`;
     const show=k==='T'?R[0]:best;document.getElementById('kV').textContent=show.Voc.toFixed(3);document.getElementById('kJ').textContent=show.Jsc.toFixed(2);document.getElementById('kF').textContent=show.FF.toFixed(2);document.getElementById('kP').textContent=show.PCE.toFixed(2);draw()}
-  const steps=[...document.querySelectorAll('.step')]; const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){steps.forEach(s=>s.classList.toggle('active',s===e.target));setLayer(e.target.dataset.layer)}}),{rootMargin:'-45% 0px -45% 0px'}); steps.forEach(s=>so.observe(s)); setLayer('CdTe'); addEventListener('resize',draw); document.addEventListener('themechange',draw);
-})();
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-const D=window.SCAPS, reduced=window.__reduced;
-const canvas=document.getElementById('heroCanvas'), heroEl=canvas.parentElement; const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-const scene=new THREE.Scene(), cam=new THREE.PerspectiveCamera(36,2,.1,100); cam.position.set(8.5,5,11.5);
-const ctr=new OrbitControls(cam,canvas); ctr.enableDamping=true; ctr.enableZoom=false; ctr.enablePan=false; ctr.autoRotate=!reduced; ctr.autoRotateSpeed=.5; ctr.minPolarAngle=.7; ctr.maxPolarAngle=1.45;
-scene.add(new THREE.HemisphereLight(0xffffff,0x223355,1.15)); const dl=new THREE.DirectionalLight(0xffffff,1.3); dl.position.set(4,8,6); scene.add(dl);
-const textSprite=(txt,color,w=2.4)=>{const c=document.createElement('canvas');c.width=512;c.height=96;const g=c.getContext('2d');g.font='600 40px -apple-system,Segoe UI,Roboto,Helvetica,Arial';g.fillStyle=color;g.textAlign='center';g.fillText(txt,256,62);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));s.scale.set(w,w*96/512,1);return s};
-// layer stack: light enters from the top (FTO) ; visual thickness on a log-ish scale so the 25 nm buffer is visible
-const COL={FTO:0x60a5fa,ZnSe:0x34d399,CdTe:0xf59e0b,Cs2BiAgI6:0xf87171,Ni:0x94a3b8}; const LAB={FTO:'FTO 0.4 µm',ZnSe:'ZnSe 0.025 µm',CdTe:'CdTe 3 µm',Cs2BiAgI6:'Cs₂BiAgI₆ 2 µm',Ni:'Ni back contact'};
-const vis=t=>t===0?.25:Math.max(.16,.42*Math.log10(1+t*40)); const W=4.2,Dp=3.0; const g=new THREE.Group(); scene.add(g);
-const layers=[]; let y=0; const order=[...D.stack].reverse(); // Ni at the bottom
-const dark=()=>window.__isDark();
-order.forEach((L,i)=>{const h=vis(L.t_um); const m=new THREE.Mesh(new THREE.BoxGeometry(W,h,Dp),new THREE.MeshStandardMaterial({color:COL[L.name],roughness:.45,metalness:L.name==='Ni'?.7:.1,transparent:true,opacity:.95})); m.position.y=y+h/2; m.userData={base:y+h/2,i,L}; g.add(m); layers.push(m); y+=h;
-  const s=textSprite(LAB[L.name],dark()?'#e6edf3':'#0b1220',2.0); s.position.set(W/2+1.0,y-h/2,Dp/2); s.userData={base:y-h/2}; g.add(s); m.userData.label=s});
-const stackH=y; g.position.y=-stackH/2;
-// band alignment ribbon beside the stack: for each semiconductor layer, CB at -chi, VB at -(chi+Eg), relative to vacuum; metal: Fermi at -phi
-const band=new THREE.Group(); band.position.set(W/2+3.9,0,-Dp/2); g.add(band); const E=v=>(v+3.6)*1.1; // eV -> units, -3.6 eV -> 0
-const sem=order.filter(L=>L.Eg>0); const mkLine=(pts,color,lw)=>new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color}));
-const cb=[],vb=[]; let yy=0; const segs=[];
-order.forEach(L=>{const h=vis(L.t_um); const y0=yy,y1=yy+h; if(L.Eg>0){const c=-L.chi,v=-(L.chi+L.Eg); segs.push({L,y0,y1,c,v})} else {segs.push({L,y0,y1,f:-L.chi})} yy+=h});
-segs.forEach(s=>{const col=COL[s.L.name]; if(s.c!==undefined){band.add(mkLine([new THREE.Vector3(E(s.c),s.y0,0),new THREE.Vector3(E(s.c),s.y1,0)],col)); band.add(mkLine([new THREE.Vector3(E(s.v),s.y0,0),new THREE.Vector3(E(s.v),s.y1,0)],col));
-  const gap=new THREE.Mesh(new THREE.PlaneGeometry(E(s.c)-E(s.v),s.y1-s.y0),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.18,side:THREE.DoubleSide})); gap.position.set((E(s.c)+E(s.v))/2,(s.y0+s.y1)/2,0); band.add(gap)}
-  else {band.add(mkLine([new THREE.Vector3(E(s.f)-.3,s.y0,0),new THREE.Vector3(E(s.f)+.3,s.y1,0)],col))}});
-// connect CB and VB edges between adjacent layers
-for(let i=0;i<segs.length-1;i++){const a=segs[i],b=segs[i+1]; if(a.c!==undefined&&b.c!==undefined){band.add(mkLine([new THREE.Vector3(E(a.c),a.y1,0),new THREE.Vector3(E(b.c),b.y0,0)],0x8b98a9)); band.add(mkLine([new THREE.Vector3(E(a.v),a.y1,0),new THREE.Vector3(E(b.v),b.y0,0)],0x8b98a9))}}
-const axisLab=[textSprite('E vs vacuum: −3.6 … −5.6 eV',dark()?'#8b98a9':'#5b6676',2.6),textSprite('conduction band',dark()?'#8b98a9':'#5b6676',1.6),textSprite('valence band',dark()?'#8b98a9':'#5b6676',1.4)];
-axisLab[0].position.set(E(-4.6),-.5,0); axisLab[1].position.set(E(-3.9),stackH+.4,0); axisLab[2].position.set(E(-5.4),stackH+.4,0); axisLab.forEach(s=>band.add(s));
-// light arrows into the top
-const arrows=[]; for(let i=-1;i<=1;i++){const a=new THREE.ArrowHelper(new THREE.Vector3(0,-1,0),new THREE.Vector3(i*1.1,stackH+1.6,0),1.1,0xfde68a,.3,.18); g.add(a); arrows.push(a)}
-const sun=textSprite('AM 1.5G, 1000 W/m²','#fde68a',2.2); sun.position.set(0,stackH+2.1,0); g.add(sun);
-document.addEventListener('themechange',e=>{const c=e.detail.dark?'#e6edf3':'#0b1220',m=e.detail.dark?'#8b98a9':'#5b6676';layers.forEach(L=>{const s=L.userData.label;const n=textSprite(LAB[L.userData.L.name],c,2.2);s.material.map.dispose();s.material.map=n.material.map;s.material.needsUpdate=true});
-  [['E vs vacuum: −3.6 … −5.6 eV',2.6],['conduction band',1.6],['valence band',1.4]].forEach(([t,w],i)=>{const n=textSprite(t,m,w);axisLab[i].material.map.dispose();axisLab[i].material.map=n.material.map;axisLab[i].material.needsUpdate=true})});
-// scroll: explode -> stack ; focus layer readout
-const track=document.getElementById('top'); let p=0;
-const ro={name:document.getElementById('roName'),t:document.getElementById('roT'),eg:document.getElementById('roEg'),chi:document.getElementById('roChi'),role:document.getElementById('roRole')}; let focus=-1;
-function setFocus(i){if(i===focus)return;focus=i;const L=order[i];ro.name.textContent=L.name.replace(/(\d)/g,'$1');ro.t.textContent=L.t_um?L.t_um+' µm':'metal';ro.eg.textContent=L.Eg?L.Eg.toFixed(2)+' eV':'–';ro.chi.textContent=L.chi.toFixed(2)+' eV'+(L.Eg?'':' (φ)');ro.role.textContent=L.role}
-addEventListener('scroll',()=>{p=Math.max(0,Math.min(1,scrollY/(track.offsetHeight-innerHeight)));canvas.style.opacity=1-.6*Math.max(0,(p-.75)/.25)},{passive:true});
-function tick(){const w=heroEl.clientWidth,h=heroEl.clientHeight;if(renderer.domElement.width!==w*renderer.getPixelRatio()||renderer.domElement.height!==h*renderer.getPixelRatio()){renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
-  const wide=w>820; const q=reduced?(p>.3?1:0):Math.max(0,Math.min(1,(p-.05)/.55)); const ex=(1-q)*1.0; // exploded gap shrinks to 0
-  layers.forEach(m=>{m.position.y=m.userData.base+m.userData.i*ex;m.userData.label.position.y=m.userData.base+m.userData.i*ex});
-  band.position.y=0; band.visible=wide; band.children.forEach(c=>{if(c.material&&'opacity' in c.material&&!(c.isSprite)){c.material.transparent=true;c.material.opacity=(c.isMesh?.18:.9)*q+(c.isMesh?.05:.25)}});
-  arrows.forEach((a,i)=>{a.position.y=stackH+1.6+(layers.length-1)*ex+(reduced?0:.15*Math.sin(performance.now()/300+i))}); sun.position.y=stackH+2.3+(layers.length-1)*ex;
-  const idx=Math.min(order.length-1,Math.floor(Math.max(0,Math.min(.999,p/.7))*order.length)); setFocus(order.length-1-idx);
-  g.position.set(wide?3.0:0,wide?-stackH/2-.4:-stackH/2+1.2,0); g.scale.setScalar(wide?.8:.5); ctr.target.set(wide?2.2:0,wide?.2:1.6,0); ctr.update(); renderer.render(scene,cam); requestAnimationFrame(tick)} tick();
+  
+  window.SITE.steps('.step',k=>setLayer(k)); addEventListener('resize',draw); document.addEventListener('themechange',draw);
+});
 </script>
 </body>
 </html>
